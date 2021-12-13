@@ -1,0 +1,70 @@
+<center>
+<h3>Lista zadań</h3>
+</center>
+<style>
+    body{
+    background-color: cyan;}
+    input{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+    
+    input::placeholder{
+        color:rgb(102, 98, 98)
+    }
+    .submit{
+        background-color: rgb(110, 57, 141);
+    }
+    .center-column{
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgb(78, 157, 160);
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+    }
+    .item-row{
+        background-color: rgb(81, 216, 111);
+        margin: 10px;
+        padding: 20px;
+        border-radius: 3px;
+        color:rgb(15, 14, 14);
+        font-size: 16px;
+        box-shadow: 0px -1px 10px -4px rgba(117, 66, 117, 0.247);
+    }
+    .btn-danger{
+        background-color:rgb(81, 216, 111);
+        border-color:rgb(207, 207, 214);
+
+    }
+</style>
+
+
+
+<div class="center-column">
+
+
+    <form method = "POST" action="/">
+        {% csrf_token %}
+        {{form.title}}
+        <input class="btn btn-info" type="submit" name="Create Task">
+    </form>
+
+    <div class="todo-list">
+    {% for task in tasks %}
+        <div class="item-row">
+            <a class="btn btn-sm btn-info" href="{% url 'update.task' task.id %}">Aktualizuj</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Usuń</a>
+
+            {% if task.complete == True %}
+            <strike>{{task}}</strike>
+            {% else %}
+            <span>{{task}}</span>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+    </div>
+</div>

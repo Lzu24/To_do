@@ -1,0 +1,21 @@
+<center>
+    <h3><p>Jestes pewny ze chcesz usunac "{{item}}"?</p></h3>
+
+    <a href="{% url 'lst' %}">Cancel</a>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="submit" name="Confirm">
+    </form>
+</center>
+<style>
+    body{
+    background-color: cyan;}
+    input{
+        width: 20%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+    
+</style>
